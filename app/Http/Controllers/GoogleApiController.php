@@ -20,7 +20,7 @@ class GoogleApiController extends Controller
         $response_type  = "code";//"token id_token";
         $redirect_uri   = "urn:ietf:wg:oauth:2.0:oob";//"http://127.0.0.1:8000/auth";
         $code           = "4/0AX4XfWggiPm5Q4bzgzywamCiPXAroG2YAVAEUie4NP8vM4NQoIY6xxblrTRmsy377aDWMw";
-        $login_hint = "albertososamunoz@gmail.com";
+        $login_hint     = null;
 
         $full_url = [
             'client_id' => $client_id,

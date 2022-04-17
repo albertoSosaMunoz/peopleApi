@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 class GoogleApiController extends Controller
 {
+    /**
+     * forma la direccion donde se tiene que acceder para obtener el app_code
+     */
     public static function run(){
 
         $client_id      = "155879370556-6ot179b6cijrloupg62tl5o90hf107f8.apps.googleusercontent.com";
@@ -17,7 +20,6 @@ class GoogleApiController extends Controller
         $response_type  = "code";//"token id_token";
         $redirect_uri   = "urn:ietf:wg:oauth:2.0:oob";//"http://127.0.0.1:8000/auth";
         $code           = "4/0AX4XfWggiPm5Q4bzgzywamCiPXAroG2YAVAEUie4NP8vM4NQoIY6xxblrTRmsy377aDWMw";
-        
         $login_hint = "albertososamunoz@gmail.com";
 
         $full_url = [
@@ -44,10 +46,12 @@ class GoogleApiController extends Controller
         print_r(curl_getinfo($google_curl,CURLINFO_REDIRECT_URL));
 
     }
-
+/**
+ * Devuelve el auth token necesario para acceder a una api de google * 
+ */
     public static function google_api_redirect(){
-
-        $code           = "4/1AX4XfWhAU4z0ilBYMlqAwdLHPQKHQHuTcGeKcVR6zeXysmaopTcin5EaR-k";
+        
+        $code           = null;
         $client_id      = "155879370556-6ot179b6cijrloupg62tl5o90hf107f8.apps.googleusercontent.com";
         $client_secret  = "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";       
         $redirect_uri   = "urn:ietf:wg:oauth:2.0:oob";//"http://127.0.0.1:8000/auth";

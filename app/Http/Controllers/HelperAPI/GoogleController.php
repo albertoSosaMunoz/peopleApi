@@ -31,9 +31,10 @@ class GoogleController extends Controller
             default:
             break;
         }
-
-
-
+        
+        //campos disponibles 
+        //https://developers.google.com/people/api/rest/v1/people/get
+ 
         $query = [
             'personFields' => 'names,emailAddresses,phoneNumbers'
         ];

@@ -28,8 +28,8 @@ class RunGoogleApi extends Command
      */
     public function handle()
     {
-        GoogleApiController::google_api_redirect();
-        //GoogleApiController::run();
+        //GoogleApiController::google_api_redirect();
+        GoogleApiController::run();
 
         return 0;
     }

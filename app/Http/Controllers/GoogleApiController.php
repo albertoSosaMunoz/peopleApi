@@ -23,13 +23,20 @@ class GoogleApiController extends Controller
         $redirect_uri   = "urn:ietf:wg:oauth:2.0:oob";//"http://127.0.0.1:8000/auth";
         $login_hint     = 'albertososamunoz@gmail.com';
 
+        
+    $string = 'This email is hardik@gmail.com and company email is company@yahoo.com and my email is alberto@gmail.com';
+  
+    $pattern = '/[a-z0-9_\-\+\.]+@[a-z0-9\-]+\.([a-z]{2,4})(?:\.[a-z]{2})?/i';
+    preg_match_all($pattern, $string, $matches);
+  
+    print_r($matches[0]);
         //dd( GoogleController::get());
         //dd( GoogleController::post());
          //obtenemos el codigo para pedir los tokens
         //GoogleController::obtain_google_api_code($client_id,'code','albertososamunoz@gmail.com');
         //$response = GoogleController::obtain_google_api_token($client_id, $client_secret);
-        //dd(GoogleController::refresh_google_api_token($client_id,$client_secret));
-        dd(GoogleApiController::convert_clientify_to_people());
+    //dd(GoogleController::refresh_google_api_token($client_id,$client_secret));
+        //dd(GoogleApiController::convert_clientify_to_people());
     }
 
     public static function sync_clientify_contacts( $clientify_api_key, $clientify_contact ){

@@ -19,6 +19,8 @@ define('GOOGLE_CODE','4/1AX4XfWivNucnod7bKR_NW4273eW_ghYbJfe5eF9eJGebArptd6weyeh
 define('REDIRECT_URI', 'urn:ietf:wg:oauth:2.0:oob');
 //refresh token , always same when token auth expire
 define('REFRESH_TOKEN','1//03FsHAEhKOTWnCgYIARAAGAMSNwF-L9IrajsPyPxR4vR-WaYKpS8lbbUYkOSInCnwej199OFmPbovdHgaStYsr9GBeenjHTLpr84');
+//actual token
+define('ACTUAL_TOKEN','ya29.a0ARrdaM9uSavP75F8C_tcrxW15tXLutedjiOAHKJa8-DOfUVKptDfxhaDCe4rW6tcTWySypmUZoe0a1Omzr8KZPALPgMB3-mc9BiT9uqQiUnhQl0aJtXdvpubrbVzaD8f1H-airS4kon0Mth6cQAq1ot0Zd--UA');
 
 class GoogleController extends Controller
 {
@@ -26,7 +28,7 @@ class GoogleController extends Controller
 
         switch ($scope){
             case 1:
-                $scope='https://people.googleapis.com/v1/people/me/connections';
+                $scope='https://people.googleapis.com/v1/people:searchContacts';
             break;
             default:
             break;
@@ -36,13 +38,15 @@ class GoogleController extends Controller
         //https://developers.google.com/people/api/rest/v1/people/get
  
         $query = [
-            'personFields' => 'names,emailAddresses,phoneNumbers'
+            'query' => 'alberto@closemarketing.net',
+            'readMask' => 'names,emailAddresses,phoneNumbers'
         ];
         //dd(json_encode($query));
         $response =    Http::withHeaders([
-            'Authorization' => 'Bearer ya29.A0ARrdaM-GSn817q8WOyDOx_YjPtqhIqJ6VbZNVJgsh0SXA6NY734WxZLKrNux6b8CgJW4YhcYDGnBXhI0sd2MyeMEPWbfUio_bREjt1mpO3q12k1yhP_I1se-Or66QGroG13FNNir2-RpmrP9_bHzINitEk-QOwYUNnWUtBVEFTQVRBU0ZRRl91NjFWRENaLS04QUJ2c3Y0TTZ1OHp4SHlsQQ0165'
+            'Authorization' => 'Bearer ' . ACTUAL_TOKEN
         ])->get( $scope, $query);
-
+        dd($response);
+            dd($response->json());
        return $response->json();
     }
 
@@ -97,7 +101,7 @@ class GoogleController extends Controller
           ];
 
         $result = Http::post(TOKEN_URL,$full_url);
-        return json_decode($result);
+        return $result->json();
     }
 
     /**
